@@ -1,0 +1,10 @@
+## Conver package-lock.json to package.json and deploy to github pages
+
+## Build structure
+
+## list requirements
+
+
+[ To use ]
+	- Get dependencies ( https://api-docs.npms.io/ )
+	- May be use Semantic UI?
