@@ -38,12 +38,20 @@ $(document).ready(function() {
 				return;
 			}
 
-			var main = json.dependencies;
+			var mainPackages = json.dependencies;
+			var subPackages = [];
 			var required = [];
 
 			// loop thru all DC and check their DC exist in the MAIN DC
-			while(hasMainPackage(main)) {
-				console.log(true);
+			for(package in mainPackages) {
+
+				if(subPackages.indexOf(package) === -1) {
+					var thisPackageDependencies = packageInfo(package);
+
+				} else {
+					continue;
+				}
+				break;
 			}
 
 			// finally we should have an array of RQ DC
@@ -81,10 +89,12 @@ $(document).ready(function() {
 			`);
 		}
 
-		function hasMainPackage(main) {
-			for(package in main) {
-				fetch()
-			}
+		function packageInfo(package) {
+			let pkg = encodeURIComponent(package)
+			let info = fetch("https://api.npms.io/v2/package/"+pkg)
+						.then(response => response.json())
+						.then(jsonResponse => console.log(jsonResponse))
+			console.log(info);
 		}
 
 		fetch('package-lock.json')
