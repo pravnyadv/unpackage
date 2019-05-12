@@ -1,10 +1,5 @@
-## Conver package-lock.json to package.json and deploy to github pages
+## handle promises errors
 
-## Build structure
+## add FAQ page
 
-## list requirements
-
-
-[ To use ]
-	- Get dependencies ( https://api-docs.npms.io/ )
-	- May be use Semantic UI?
+## add a link to submit complaints or feature request just

@@ -109,6 +109,7 @@ img {
 }
 
 .message {
+    text-align: center;
     padding: .75rem 1.25rem;
     font-weight: bold;
 }
@@ -118,6 +119,16 @@ img {
     background-color: #f8d7da;
     border-color: #f5c6cb;
 }
+
+.message.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* .message.loading {
+    background: #ccc;
+} */
 
 .block-buttons {
     padding:  15px 0;
@@ -134,5 +145,49 @@ img {
     font-size: 12px;
 }
 
-/* background-image: linear-gradient(60deg, #abecd6 0%, #fbed96 100%); */
+.loading {
+    position: relative;
+}
 
+.ball-pulse-sync>div, .ball-pulse>div, .ball-scale-random>div, .ball-scale>div {
+    background-color: #1abc9c;
+    border-radius: 100%;
+    margin: 2px;
+    display: inline-block;
+}
+
+.ball-pulse>div {
+    width: 15px;
+    height: 15px;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.ball-pulse>div:nth-child(1) {
+    -webkit-animation: scale .75s -.24s infinite cubic-bezier(.2,.68,.18,1.08);
+    animation: scale .75s -.24s infinite cubic-bezier(.2,.68,.18,1.08);
+}
+
+.ball-pulse>div:nth-child(2) {
+    -webkit-animation: scale .75s -.12s infinite cubic-bezier(.2,.68,.18,1.08);
+    animation: scale .75s -.12s infinite cubic-bezier(.2,.68,.18,1.08);
+}
+
+.ball-pulse>div:nth-child(3) {
+    -webkit-animation: scale .75s 0s infinite cubic-bezier(.2,.68,.18,1.08);
+    animation: scale .75s 0s infinite cubic-bezier(.2,.68,.18,1.08);
+}
+
+@keyframes scale {
+    30% {
+        -webkit-transform: scale(.3);
+        transform: scale(.3);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+/* background-image: linear-gradient(60deg, #abecd6 0%, #fbed96 100%); */

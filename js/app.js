@@ -7,19 +7,17 @@ $(document).ready(function() {
 			matchBrackets: true,
 		    autoCloseBrackets: true,
 		    mode: "application/ld+json",
-		    lineWrapping: true
+		    lineWrapping: true,
+		    indent: true
 		});
 
-		// #ABBR [  DC == Depenedency, RQ == Required]
+		$(".clear").click(()=> {
+			editor.setValue("");
+		})
 
-
-		//bind click event
 		$(".unpack").click(function() {
 
-
-			// check input is json
-			var code = editor.getValue();
-
+			let code = editor.getValue();
 			if(code == '') {
 				showMessage('error', 'Empty Json');
 				return;
@@ -30,41 +28,96 @@ $(document).ready(function() {
 				return;
 			}
 
-			// make an array of all MAIN DC
-			var json = JSON.parse(code);
-
+			let json = JSON.parse(code);
 			if(!json.dependencies) {
 				showMessage('error', 'Invalid package-lock.json code');
 				return;
 			}
 
 			var mainPackages = json.dependencies;
-			var subPackages = [];
-			var required = [];
+			let required = {};
+			let subPackages = {};
 
-			// loop thru all DC and check their DC exist in the MAIN DC
-			for(package in mainPackages) {
+			showMessage("loading");
 
-				if(subPackages.indexOf(package) === -1) {
-					var thisPackageDependencies = packageInfo(package);
+			for(const [key, value] of Object.entries(mainPackages)) {
 
+				if(!value.requires) {
+					required[key] = value.version;
 				} else {
-					continue;
+					required[key] = value.version;
+					let requires = value.requires;
+
+					for(const [key, value] of Object.entries(requires)) {
+						subPackages[key] = value;
+					}
 				}
-				break;
 			}
 
-			// finally we should have an array of RQ DC
-
-			// Generate package.json from this RQ DC array
-
-			// paste it into the editor and give a success message
+			processPackages(required, subPackages, editor);
 
 		});
 
+		async function processPackages(packages, subPackages, editor) {
+			let required = packages;
 
-		
+			for(pkg in packages) {
+				console.log("On pkg: "+pkg);
+				//skip if exists in subpackages OTHERWISE FETCH AND PUSH TO subPackages
+			
+				if(subPackages.hasOwnProperty(pkg)) {
+					delete required[pkg];
+					continue;
+				}
 
+				let pkgInfo = await unpack(pkg);
+				let dependencies = pkgInfo.collected.metadata.dependencies;
+
+				if(!dependencies) {
+					continue;
+				}
+
+				for (const [key, value] of Object.entries(dependencies)) {
+
+					if(required.hasOwnProperty(key)) {
+						delete required[key];
+					}
+
+					subPackages[key] = value;
+
+				}
+			}
+
+			let packaged = await packageJson(required);
+			editor.setValue(packaged);
+			showMessage("success", "Successfully Converted: Copy this code and paste it in package.json");
+
+		}
+
+		const packageJson = (processed) => {
+			let main = {
+				"name": "converted",
+				"version": "1.0.0",
+				"description": "",
+				"author": "",
+				"license": "ISC",
+				"dependencies": processed
+			};
+
+			return JSON.stringify(main);
+		}
+
+		async function unpack(package) {
+			const pkgInfo = await getPackage(package)
+			return pkgInfo;
+		}
+
+		async function getPackage(package) {
+			let pkg = encodeURIComponent(package);
+		    const response = await fetch("https://api.npms.io/v2/package/"+pkg);
+		    const json = await response.json();
+		    return json;
+		}
 
 		function IsValidJSONString(str) {
 
@@ -80,24 +133,20 @@ $(document).ready(function() {
 		    return true;
 		}
 
-		function showMessage(type, message) {
+		function showMessage(type, message = "") {
 
-			$(".block-title").html(` 
-				<div class="message ${type}">
-					${message}
-				</div>
-			`);
+			if(type == 'loading') {
+				$(".block-title").html(` 
+					<div class="message ${type}">
+						<div class="ball-pulse"><div></div><div></div><div></div></div>
+					</div>
+				`);
+			} else {
+				$(".block-title").html(` 
+					<div class="message ${type}">
+						${message}
+					</div>
+				`);
+			}
 		}
-
-		function packageInfo(package) {
-			let pkg = encodeURIComponent(package)
-			let info = fetch("https://api.npms.io/v2/package/"+pkg)
-						.then(response => response.json())
-						.then(jsonResponse => console.log(jsonResponse))
-			console.log(info);
-		}
-
-		fetch('package-lock.json')
-			.then(response => response.json())
-			.then(jsonResponse => console.log(jsonResponse))
 });
