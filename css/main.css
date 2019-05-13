@@ -11,6 +11,7 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
   margin: 0;
   padding: 0;
   font-weight: normal;
+  background-image: linear-gradient(60deg, #abecd6 0%, #fbed96 100%);
 }
 
 ol, ul {
@@ -92,6 +93,8 @@ img {
 
 .heading {
     padding: 50px 0;
+    color: #2185d0;
+    font-weight: 700;
 }
 
 .center {
