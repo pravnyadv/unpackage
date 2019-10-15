@@ -1,5 +1,0 @@
-## handle promises errors
-
-## add FAQ page
-
-## add a link to submit complaints or feature request just
