@@ -1,7 +1,7 @@
 /* BASICS */
 
+/* Set height, width, borders, and global font properties here */
 .CodeMirror {
-  /* Set height, width, borders, and global font properties here */
   font-family: monospace;
   height: 300px;
   color: black;
@@ -10,15 +10,19 @@
 
 /* PADDING */
 
+/* Vertical padding around content */
 .CodeMirror-lines {
-  padding: 4px 0; /* Vertical padding around content */
-}
-.CodeMirror pre {
-  padding: 0 4px; /* Horizontal padding of content */
+  padding: 4px 0px;
 }
 
+/* Horizontal padding of content */
+.CodeMirror pre {
+  padding: 0px 4px;
+}
+
+/* The little square between H and V scrollbars */
 .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
-  background-color: white; /* The little square between H and V scrollbars */
+  background-color: white;
 }
 
 /* GUTTER */
@@ -28,7 +32,9 @@
   background-color: #f7f7f7;
   white-space: nowrap;
 }
+
 .CodeMirror-linenumbers {}
+
 .CodeMirror-linenumber {
   padding: 0 3px 0 5px;
   min-width: 20px;
