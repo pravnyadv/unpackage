@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-		//init code mirror
+		//Init code mirror
 		var editor = CodeMirror(document.querySelector(".block-code"), {
 			lineNumbers: true,
 			autofocus: true,
