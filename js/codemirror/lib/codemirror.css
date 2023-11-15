@@ -21,8 +21,7 @@
 }
 
 /* The little square between H and V scrollbars */
-.CodeMirror-scrollbar-filler,
-.CodeMirror-gutter-filler {
+.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
   background-color: white;
 }
 
@@ -37,7 +36,7 @@
 .CodeMirror-linenumbers {}
 
 .CodeMirror-linenumber {
-  padding: 0 3px 0 5px;
+  padding: 0px 3px 0px 5px;
   min-width: 20px;
   text-align: right;
   color: #999;
@@ -163,8 +162,7 @@
   color: #292;
 }
 
-.cm-header,
-.cm-strong {
+.cm-header, .cm-strong {
   font-weight: bold;
 }
 
@@ -196,17 +194,13 @@
   color: #00f;
 }
 
-.cm-s-default .cm-variable,
-.cm-s-default .cm-punctuation,
-.cm-s-default .cm-property,
-.cm-s-default .cm-operator {}
+.cm-s-default .cm-variable, .cm-s-default .cm-punctuation, .cm-s-default .cm-property, .cm-s-default .cm-operator {}
 
 .cm-s-default .cm-variable-2 {
   color: #05a;
 }
 
-.cm-s-default .cm-variable-3,
-.cm-s-default .cm-type {
+.cm-s-default .cm-variable-3, .cm-s-default .cm-type {
   color: #085;
 }
 
@@ -288,7 +282,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 
 /* The rest of this file contains styles related to the mechanics of
    the editor. You probably shouldn't touch them. */
-
 .CodeMirror {
   position: relative;
   overflow: hidden;
@@ -317,10 +310,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 /* The fake, visible scrollbars. Used to force redraw during scrolling
    before actual scrolling happens, thus preventing shaking and
    flickering artifacts. */
-.CodeMirror-vscrollbar,
-.CodeMirror-hscrollbar,
-.CodeMirror-scrollbar-filler,
-.CodeMirror-gutter-filler {
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
   position: absolute;
   z-index: 6;
   display: none;
@@ -455,11 +445,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 }
 
 /* Force content-box sizing for the elements where we expect it */
-.CodeMirror-scroll,
-.CodeMirror-sizer,
-.CodeMirror-gutter,
-.CodeMirror-gutters,
-.CodeMirror-linenumber {
+.CodeMirror-scroll, .CodeMirror-sizer, .CodeMirror-gutter, .CodeMirror-gutters, .CodeMirror-linenumber {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
@@ -507,15 +493,11 @@ div.CodeMirror-dragcursors {
   cursor: crosshair;
 }
 
-.CodeMirror-line::selection,
-.CodeMirror-line>span::selection,
-.CodeMirror-line>span>span::selection {
+.CodeMirror-line::selection, .CodeMirror-line>span::selection, .CodeMirror-line>span>span::selection {
   background: #d7d4f0;
 }
 
-.CodeMirror-line::-moz-selection,
-.CodeMirror-line>span::-moz-selection,
-.CodeMirror-line>span>span::-moz-selection {
+.CodeMirror-line::-moz-selection, .CodeMirror-line>span::-moz-selection, .CodeMirror-line>span>span::-moz-selection {
   background: #d7d4f0;
 }
 
@@ -530,7 +512,6 @@ div.CodeMirror-dragcursors {
 }
 
 @media print {
-
   /* Hide the cursor when printing */
   .CodeMirror div.CodeMirror-cursors {
     visibility: hidden;
