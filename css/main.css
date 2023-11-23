@@ -3,18 +3,21 @@ html {
 }
 
 *, *:before, *:after {
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
 
 body, h1, h2, h3, h4, h5, h6, p, ol, ul {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     margin: 0;
     padding: 0px;
     font-weight: normal;
+    font-size: 0.875rem, 14px;
+    line-height: 1.5;
     height: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-color: #212328;
+    background-color: #0d1117;
+    display: block;
 }
 
 ol, ul {
@@ -40,10 +43,10 @@ img {
     outline: 0;
     border: none;
     vertical-align: baseline;
-    background: #e0e1e2 none;
-    color: rgba(0, 0, 0, .6);
+    background: #21262d;
+    color: #c9d1d9;
     margin: 0 .25em 0 0;
-    padding: .8em 1.5em .8em;
+    padding: 1em 1.5em 1em;
     text-shadow: none;
     font-weight: 700;
     line-height: 1em;
@@ -61,8 +64,6 @@ img {
     transition: opacity .1s ease, background-color .1s ease, color .1s ease, background .1s ease, -webkit-box-shadow .1s ease;
     transition: opacity .1s ease, background-color .1s ease, color .1s ease, box-shadow .1s ease, background .1s ease;
     transition: opacity .1s ease, background-color .1s ease, color .1s ease, box-shadow .1s ease, background .1s ease, -webkit-box-shadow .1s ease;
-    will-change: '';
-    -webkit-tap-highlight-color: transparent;
 }
 
 .btn:hover {
@@ -75,14 +76,14 @@ img {
 
 .btn.primary {
     background-color: #2185d0;
-    color: #fff;
+    color: #c9d1d9;
     text-shadow: none;
     background-image: none;
 }
 
 .btn.primary:hover {
     background-color: #1678c2;
-    color: #fff;
+    color: #c9d1d9;
     text-shadow: none;
 }
 

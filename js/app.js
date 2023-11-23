@@ -89,7 +89,7 @@ $(document).ready(function () {
 			}
 		}
 
-		let packaged = await packageJson(required);
+		let packaged = packageJson(required);
 		editor.setValue(packaged);
 		showMessage("success", "Successfully Converted: Copy this code and paste it in package.json");
 
